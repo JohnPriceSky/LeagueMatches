@@ -1,0 +1,14 @@
+h1{
+    color: red;
+}
+#container{
+    margin: auto;
+    width: 1000px;
+}
+#navbar li{
+    display: inline-block;
+    padding-left: 10px;
+}
+#navbar li:first-child{
+    display: inline-block;
+}
