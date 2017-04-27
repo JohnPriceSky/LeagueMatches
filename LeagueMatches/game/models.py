@@ -26,6 +26,9 @@ class Game(models.Model):
     def __str__(self):
         return self.teamA.name + ' vs ' + self.teamB.name + ' ' + str(self.date)
 
+    def get_absolute_url(self):
+        return "/games/%i/" % self.id
+
 
 class MapObjective(models.Model):
     type = models.CharField(max_length=20)

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+    {% for s in series %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s }}</td>
+            <td><a href="{% url 'games' s.id %}">Choose</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+    {% for t in teams %}
+        <li>{{ t }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

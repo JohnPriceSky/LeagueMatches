@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+    {% for g in games %}
+        <tr>
+            <td>{{ g.id }}</td>
+            <td>{{ g }}</td>
+            <td><a href="#">Choose</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
