@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
+    <h2>Drużyny</h2>
+    <hr>
+    <ul class="list-group">
     {% for t in teams %}
-        <li>{{ t }}</li>
+        <li class="list-group-item">{{ t }}</li>
     {% endfor %}
     </ul>
 {% endblock %}

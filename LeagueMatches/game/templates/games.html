@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-    {% for g in games %}
-        <tr>
-            <td>{{ g.id }}</td>
-            <td>{{ g }}</td>
-            <td><a href="#">Choose</a></td>
-        </tr>
-    {% endfor %}
+    <h2>Mecze</h2>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mecz</th>
+                <th>Wybierz</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in games %}
+                <tr>
+                    <td>{{ g.id }}</td>
+                    <td>{{ g }}</td>
+                    <td><a href="#">Choose</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

@@ -5,10 +5,8 @@ h1{
     margin: auto;
     width: 1000px;
 }
-#navbar li{
-    display: inline-block;
-    padding-left: 10px;
-}
-#navbar li:first-child{
-    display: inline-block;
-}
+/*footer{*/
+      /*background-color: #555;*/
+      /*color: white;*/
+      /*padding: 15px;*/
+/*}*/
