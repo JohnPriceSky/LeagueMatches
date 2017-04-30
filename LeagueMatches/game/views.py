@@ -25,6 +25,6 @@ def show_players(request, team_id):
     try:
         players = Player.objects.filter(team_id=team_id)
     except Player.DoesNotExist:
-        raise Http404("Team does not exist")
+        raise Http404("Player does not exist")
 
     return render_to_response('players.html', {'players': players})
