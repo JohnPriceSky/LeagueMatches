@@ -5,12 +5,7 @@ h1{
     margin: auto;
     width: 1000px;
 }
-/*footer{*/
-      /*background-color: #555;*/
-      /*color: white;*/
-      /*padding: 15px;*/
-/*}*/
-/*body{*/
-    /*background-color: darkgray;*/
-    /*color: white;*/
-/*}*/
+html{
+    min-height: 100%;
+    position: relative;
+}
