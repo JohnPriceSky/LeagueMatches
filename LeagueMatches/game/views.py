@@ -25,3 +25,11 @@ def show_teams(request):
 def show_players(request, team_id):
     players = get_list_or_404(Player, team_id=team_id)
     return render_to_response('players.html', {'players': players})
+
+
+def about(request):
+    return render_to_response('about.html')
+
+
+def contact(request):
+    return render_to_response('contact.html')

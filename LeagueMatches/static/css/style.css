@@ -1,11 +1,13 @@
-h1{
+h1 {
     color: red;
 }
-#container{
+
+#container {
     margin: auto;
     width: 1000px;
 }
-html{
-    min-height: 100%;
-    position: relative;
+
+body {
+    background-color: #122b40;
+    color: whitesmoke;
 }
