@@ -1,3 +1,8 @@
+body {
+    background-color: #122b40;
+    color: whitesmoke;
+}
+
 h1 {
     color: red;
 }
@@ -7,7 +12,6 @@ h1 {
     width: 1000px;
 }
 
-body {
-    background-color: #122b40;
-    color: whitesmoke;
-}
+/*.modal-content{*/
+    /*background-color: #1b6d85;*/
+/*}*/

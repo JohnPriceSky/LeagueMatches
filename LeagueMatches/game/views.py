@@ -33,3 +33,7 @@ def about(request):
 
 def contact(request):
     return render_to_response('contact.html')
+
+
+def sign_in(request):
+    return render_to_response('sign_in.html')

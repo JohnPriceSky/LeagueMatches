@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^players/(?P<team_id>[0-9]+)/$', views.show_players, name="players"),
     url(r'^about/$', views.about, name="about"),
     url(r'^contact/$', views.contact, name="contact"),
+    url(r'^sign_in/$', views.sign_in, name="sign_in"),
 ]
