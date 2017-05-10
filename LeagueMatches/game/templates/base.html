@@ -13,20 +13,6 @@
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
 </head>
-<style>
-    .modal-content {
-        background-color: darkslategray;
-        color: white;
-    }
-    #signIn{
-        background-color: darkslategray;
-        color: white;
-    }
-    #signIn:hover{
-        background-color: white;
-        color: #000;
-    }
-</style>
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -45,10 +31,10 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'schedule' %}">Schedule</a></li>
             <li><a href="{% url 'teams' %}">Teams</a></li>
-            <li><a href="#">Player statistics</a></li>
+            <li><a href="{% url 'stat' %}">Player statistics</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
-            <li><a class="btn btn-default" id="signIn" data-toggle="modal" data-target="#myModal">Sign In</a></li>
+            <li><a class="btn btn-primary" id="signIn" data-toggle="modal" data-target="#myModal">Sign In</a></li>
         </ul>
     </div>
     {#            <div id="logo">#}

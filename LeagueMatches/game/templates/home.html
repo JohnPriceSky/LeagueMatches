@@ -6,5 +6,13 @@
     <hr>
     <h4>Strona poświęcona rozgrywkom i statystykom ligi nerdów</h4>
     <br>
-    <img class="img-thumbnail" src="{% static "LM.jpg" %}" alt="bieda"></img>
+    <div class="container">
+        <h4>Znajdź zawodnika</h4>
+        <form action="{% url 'stat' %}" method="post">
+            <label>Your name: </label>
+            <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+            <input type="submit" value="OK">
+        </form>
+    </div>
+    <img class="img-thumbnail center-block" src="{% static "LM.jpg" %}" alt="bieda"></img>
 {% endblock %}

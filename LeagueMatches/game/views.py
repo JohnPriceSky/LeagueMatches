@@ -1,6 +1,8 @@
-from django.shortcuts import render_to_response, get_list_or_404
+from django.shortcuts import render_to_response, get_list_or_404, redirect, get_object_or_404
 from django.http import Http404
 from .models import Serie, Game, Team, Player
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -37,3 +39,13 @@ def contact(request):
 
 def sign_in(request):
     return render_to_response('sign_in.html')
+
+
+def stat(request):
+    players = Player.objects.all()
+    return render_to_response('stat.html', {'players': players})
+
+
+def stat2(request, player_id):
+    player = get_object_or_404(Player, id=player_id)
+    return render_to_response('stat2.html', {'player': player})

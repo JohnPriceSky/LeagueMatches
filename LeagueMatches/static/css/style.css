@@ -1,6 +1,9 @@
 body {
-    background-color: #122b40;
-    color: whitesmoke;
+    background-color: #eaeaea;
+}
+
+hr {
+    border-top: 1px solid #222222;
 }
 
 h1 {
@@ -12,6 +15,37 @@ h1 {
     width: 1000px;
 }
 
-/*.modal-content{*/
-    /*background-color: #1b6d85;*/
-/*}*/
+.modal-header {
+    border-color: #222222;
+}
+
+.close{
+    color: red;
+    opacity: 1;
+}
+
+.close:hover{
+    color: darkred;
+}
+
+.modal-content {
+    background-color: #eaeaea;
+}
+
+.table>thead>tr>th{
+    border-color: #aaaaaa;
+}
+.table>tbody>tr>th{
+    border-color: #bbbbbb;
+}
+
+#signIn {
+    border-color: #2e6da4;
+    background-color: #337ab7;
+    color: white;
+}
+
+#signIn:hover {
+    background-color: #286090;
+    border-color: #204d74
+}
