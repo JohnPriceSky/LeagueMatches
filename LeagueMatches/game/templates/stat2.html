@@ -3,7 +3,9 @@
 {% block content %}
     <h2>Statystyki</h2>
     <hr>
-    <h2>{{ player }}</h2>
-    <h4>KDA:</h4>
-    <h4>costam:</h4>
+    <h2><u>{{ player }}</u></h2>
+    <h3>Name and surname: {{ player.name }} {{ player.surname }}</h3>
+    <h3>Team: {{ player.team }}</h3>
+    <h3>KDA:</h3>
+    <h3>costam:</h3>
 {% endblock %}

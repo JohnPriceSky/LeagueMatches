@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^sign_in/$', views.sign_in, name="sign_in"),
     url(r'^stat/$', views.stat, name="stat"),
     url(r'^stat2/(?P<player_id>[0-9]+)/$', views.stat2, name="stat2"),
+
+    #registration
+    url(r'^register/$', views.UserFormView.as_view(), name="register"),
 ]

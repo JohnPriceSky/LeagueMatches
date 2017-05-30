@@ -1,8 +1,10 @@
-from django.shortcuts import render_to_response, get_list_or_404, redirect, get_object_or_404
-from django.http import Http404
+from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, render, redirect
+from django.http import Http404, HttpResponseRedirect
 from .models import Serie, Game, Team, Player
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.contrib.auth import  authenticate, login
+from django.views.generic import View
+from .forms import UserForm
+from django.core.urlresolvers import reverse_lazy
 
 
 def home(request):
@@ -49,3 +51,32 @@ def stat(request):
 def stat2(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     return render_to_response('stat2.html', {'player': player})
+
+
+class UserFormView(View):
+    form_class = UserForm
+    template_name = 'sign_in.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('home')
+
+        return render(request, self.template_name, {'form': form})
+

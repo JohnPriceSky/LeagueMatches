@@ -38,15 +38,6 @@ class MapObjective(models.Model):
         return self.type
 
 
-class Event(models.Model):
-    time = models.DateTimeField()
-    game = models.ForeignKey(Game)
-    mapObjective = models.ForeignKey(MapObjective)
-
-    def __str__(self):
-        return self.mapObjective.type + ' ' + str(self.time)
-
-
 class Player(models.Model):
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=30)
@@ -55,3 +46,17 @@ class Player(models.Model):
 
     def __str__(self):
         return self.nickname
+
+
+class Event(models.Model):
+    game = models.ForeignKey(Game)
+    # player = models.ForeignKey(Player)
+    mapObjective = models.ForeignKey(MapObjective)
+    time = models.TimeField()
+
+    def __str__(self):
+        return self.mapObjective.type + ' ' + str(self.time)
+
+
+
+
