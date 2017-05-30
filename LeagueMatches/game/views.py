@@ -39,10 +39,6 @@ def contact(request):
     return render_to_response('contact.html')
 
 
-def sign_in(request):
-    return render_to_response('sign_in.html')
-
-
 def stat(request):
     players = Player.objects.all()
     return render_to_response('stat.html', {'players': players})
