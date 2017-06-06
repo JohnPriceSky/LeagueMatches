@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ s.id }}</td>
                     <td>{{ s }}</td>
-                    <td><a href="{% url 'games' s.id %}">Choose</a></td>
+                    <td><a href="{% url 'game:games' s.id %}">Choose</a></td>
                 </tr>
             {% endfor %}
         </tbody>

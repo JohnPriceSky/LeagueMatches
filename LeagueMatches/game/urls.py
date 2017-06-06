@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from . import views
-from django.contrib.auth import views as auth_views
+
+
+app_name = 'game'
+
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
@@ -11,10 +14,5 @@ urlpatterns = [
     url(r'^about/$', views.about, name="about"),
     url(r'^contact/$', views.contact, name="contact"),
     url(r'^stat/$', views.stat, name="stat"),
-    url(r'^stat2/(?P<player_id>[0-9]+)/$', views.stat2, name="stat2"),
-
-    # registration
-    url(r'^register/$', views.UserFormView.as_view(), name="register"),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^stat/(?P<player_id>[0-9]+)/$', views.stat2, name="stat2"),
 ]

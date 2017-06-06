@@ -20,7 +20,7 @@
                     <td>{{ p }}</td>
                     <td>Kda</td>
                     <td>costam</td>
-                    <td><a href="{% url 'stat' p.id %}">Choose</a></td>
+                    <td><a href="{% url 'game:stat' p.id %}">Choose</a></td>
                 </tr>
             {% endfor %}
         </tbody>
