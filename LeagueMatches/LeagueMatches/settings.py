@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = [
     'game.apps.GameConfig',
+    'managePanel.apps.ManagepanelConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
