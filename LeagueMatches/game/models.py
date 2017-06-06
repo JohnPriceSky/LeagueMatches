@@ -53,17 +53,17 @@ class Stat(models.Model):
         return str(self.game) + ' - ' + self.player.nickname
 
 
-class Event(models.Model):
-    type = models.CharField(max_length=20)
-    value = models.FloatField()
+class MapObjective(models.Model):
+    type = models.CharField(max_length=20, null=True)
+    value = models.FloatField(null=True)
 
     def __str__(self):
         return self.type
 
 
-class MapObjective(models.Model):
-    event = models.ForeignKey(Event, null=True)
+class Event(models.Model):
+    mapObjective = models.ForeignKey(MapObjective, null=True)
     stat = models.ForeignKey(Stat, null=True)
 
     def __str__(self):
-        return str(self.stat) + ' - ' + str(self.event)
+        return str(self.stat) + ' - ' + str(self.mapObjective)
