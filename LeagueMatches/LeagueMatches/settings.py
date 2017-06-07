@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,4 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'home'
 
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LecZiQUAAAAAG9fJtIW6g1wkxnYounOiltnBR9K'
+RECAPTCHA_PRIVATE_KEY = '6LdpjiQUAAAAAI5xUFX68fVd_sAxD-CW8Wwq2Drj'
