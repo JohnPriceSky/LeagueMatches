@@ -6,6 +6,6 @@ app_name = 'manage'
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
-    url(r'^login/$', auth_views.login, {'template_name': '/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^login$',  views.auth, name='login'),
+    url(r'^logout$', views.logout_view, name='logout'),
 ]
