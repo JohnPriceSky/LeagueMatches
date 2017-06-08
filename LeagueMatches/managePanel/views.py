@@ -30,10 +30,13 @@ def auth(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request, user)
+        else:
+            message = "Invalid username or password"
+            return render(request, 'auth.html', {'message': message})
         return redirect('/manage/')
         #else:
         #    return render(request, 'auth.html')
@@ -245,3 +248,28 @@ def removeObjective(request, stat_id, event_id):
     event = get_object_or_404(Event, id=event_id)
     event.delete()
     return redirect('/manage/objectives/' + str(stat_id))
+
+
+def series(request):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    series = Serie.objects.all()
+    return render(request, 'manageSeries.html', {'series': series})
+
+
+def editSerie(request, serie_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    serie = get_object_or_404(Serie, id=serie_id)
+    return render(request, 'editSerie.html', {'serie': serie})
+
+
+def addSerie(request):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    if request.method == 'POST':
+        begin = request.POST.get('begin')
+        end = request.POST.get('end')
+        serie = Serie.objects.create(begin=begin, end=end)
+        serie.save()
+    return redirect('/manage/series')

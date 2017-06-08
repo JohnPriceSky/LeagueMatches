@@ -5,7 +5,7 @@ app_name = 'manage'
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
-    url(r'^login$',  views.auth, name='login'),
+    url(r'^login$', views.auth, name='login'),
     url(r'^logout$', views.logout_view, name='logout'),
     url(r'^players$', views.players, name='players'),
     url(r'^player/(?P<player_id>[0-9]+)$', views.editPlayer, name='editPlayer'),
@@ -25,4 +25,7 @@ urlpatterns = [
     url(r'^objectives/(?P<stat_id>[0-9]+)$', views.editObjectives, name='editObjectives'),
     url(r'^AddObjective/(?P<stat_id>[0-9]+)$', views.addObjective, name='addObjective'),
     url(r'^RemoveObjective/(?P<stat_id>[0-9]+)/(?P<event_id>[0-9]+)$', views.removeObjective, name='removeObjective'),
+    url(r'^series$', views.series, name='series'),
+    url(r'^AddSerie$', views.addSerie, name='addSerie'),
+    url(r'^serie/(?P<serie_id>[0-9]+)$', views.editSerie, name='editSerie'),
 ]
