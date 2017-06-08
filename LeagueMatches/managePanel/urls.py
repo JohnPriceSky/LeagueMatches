@@ -19,5 +19,10 @@ urlpatterns = [
     url(r'^RenameTeam/(?P<team_id>[0-9]+)$', views.renameTeam, name='renameTeam'),
     url(r'^RemoveTeam/(?P<team_id>[0-9]+)$', views.removeTeam, name='removeTeam'),
     url(r'^matches$', views.matches, name='matches'),
+    url(r'^match/(?P<game_id>[0-9]+)$', views.editMatch, name='editMatch'),
     url(r'^AddMatch$', views.addMatch, name='addMatch'),
+    url(r'^UpdateStat/(?P<stat_id>[0-9]+)$', views.updateStat, name='updateStat'),
+    url(r'^objectives/(?P<stat_id>[0-9]+)$', views.editObjectives, name='editObjectives'),
+    url(r'^AddObjective/(?P<stat_id>[0-9]+)$', views.addObjective, name='addObjective'),
+    url(r'^RemoveObjective/(?P<stat_id>[0-9]+)/(?P<event_id>[0-9]+)$', views.removeObjective, name='removeObjective'),
 ]

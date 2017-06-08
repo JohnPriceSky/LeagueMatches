@@ -7,7 +7,7 @@
     <hr>
     <ul class="list-group">
     {% for g in games %}
-        <li class="list-group-item"><a href="{% url 'manage:editTeam' g.id %}">{{ g }}</a></li>
+        <li class="list-group-item"><a href="{% url 'manage:editMatch' g.id %}">{{ g }}</a></li>
     {% endfor %}
     </ul>
     <hr>

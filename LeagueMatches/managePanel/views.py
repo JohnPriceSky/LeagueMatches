@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .decorators import check_recaptcha
 from django.conf import settings
 from LeagueMatches.settings import RECAPTCHA_PRIVATE_KEY
-from game.models import Team, Player, Game, Serie
+from game.models import Team, Player, Game, Serie, Stat, MapObjective, Event
 
 import requests
 
@@ -166,6 +166,14 @@ def matches(request):
     return render(request, 'manageMatches.html', {'games' : games, 'teams' : teams})
 
 
+def editMatch(request, game_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    game = get_object_or_404(Game, id=game_id)
+    stats = Stat.objects.filter(game_id=game_id)
+    return render(request, 'editMatch.html', {'game' : game, 'stats' : stats})
+
+
 def addMatch(request):
     if not request.user.is_authenticated:
         return redirect('/manage/')
@@ -187,4 +195,53 @@ def addMatch(request):
                                     winner=get_object_or_404(Team, id=winner_id),
                                     serie=serie)
         match.save()
+        players = Player.objects.filter(team_id=team_a_id)
+        for p in players:
+            stat = Stat.objects.create(game=match,
+                                       player=p)
+        players = Player.objects.filter(team_id=team_b_id)
+        for p in players:
+            stat = Stat.objects.create(game=match,
+                                       player=p)
     return redirect('/manage/matches')
+
+
+def updateStat(request, stat_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    stat = get_object_or_404(Stat, id=stat_id)
+    if request.method == 'POST':
+        stat.kills = request.POST.get('kills')
+        stat.deaths = request.POST.get('deaths')
+        stat.assists = request.POST.get('assists')
+        stat.save()
+    return redirect('/manage/match/' + str(stat.game_id))
+
+
+def editObjectives(request, stat_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    stat = get_object_or_404(Stat, id=stat_id)
+    events = Event.objects.filter(stat_id=stat_id)
+    mapObjectives = MapObjective.objects.all()
+    return render(request, 'editObjectives.html', {'stat' : stat, 'events' : events, 'obj' : mapObjectives})
+
+
+def addObjective(request, stat_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    if request.method == 'POST':
+        obj_id = request.POST.get('objective')
+        obj = get_object_or_404(MapObjective, id=obj_id)
+        event = Event.objects.create(mapObjective=obj,
+                                     stat=get_object_or_404(Stat, id=stat_id))
+        event.save()
+    return redirect('/manage/objectives/' + str(stat_id))
+
+
+def removeObjective(request, stat_id, event_id):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    event = get_object_or_404(Event, id=event_id)
+    event.delete()
+    return redirect('/manage/objectives/' + str(stat_id))

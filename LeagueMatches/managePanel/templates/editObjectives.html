@@ -1,0 +1,30 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h2>Edit {{ stat }}</h2>
+    <hr>
+    <table class="table">
+    {% for e in events %}
+        <tr>
+            <td>{{ e.mapObjective }}</td>
+            <td><a class="btn btn-danger" href="{% url 'manage:removeObjective' stat.id e.id %}">Remove Objective</a></td>
+        </tr>
+    {% endfor %}
+        <tr>
+            <td>
+                <form class="form-inline" method="post" action="{% url 'manage:addObjective' stat.id %}">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="team_b">Choose objective:</label>
+                        <select title="Choose objective" name="objective" required>
+                        <option disabled selected hidden>Choose a objective</option>
+                        {% for o in obj %}
+                            <option value="{{ o.id }}">{{ o }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add objective</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

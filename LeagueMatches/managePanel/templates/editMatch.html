@@ -1,0 +1,33 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h2>Edit {{ game }}</h2>
+    <hr>
+
+    <hr>
+    <h3>Edit stats:</h3>
+    <hr>
+    <ul class="table">
+    {% for s in stats %}
+        <li class="list-group-item">
+            <p>{{ s.player }}</p>
+            <form class="form-inline" method="post" action="{% url 'manage:updateStat' s.id %}">{% csrf_token %}
+                <div class="form-group">
+                    <label for="kills">Kills:</label>
+                    <input type="number" class="form-control" placeholder="0" name="kills" value="{{ s.kills }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="deaths">Deaths:</label>
+                    <input type="number" class="form-control" placeholder="0" name="deaths" value="{{ s.deaths }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="assists">Assists:</label>
+                    <input type="number" class="form-control" placeholder="0" name="assists" value="{{ s.assists }}" required>
+                </div>
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+            <a class="btn btn-info" href="{% url 'manage:editObjectives' s.id %}">Edit objectives</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
