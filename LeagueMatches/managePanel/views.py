@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .decorators import check_recaptcha
 from django.conf import settings
 from LeagueMatches.settings import RECAPTCHA_PRIVATE_KEY
-from game.models import Team, Player
+from game.models import Team, Player, Game, Serie
 
 import requests
 
@@ -161,4 +161,30 @@ def removeTeam(request, team_id):
 def matches(request):
     if not request.user.is_authenticated:
         return redirect('/manage/')
-    return render(request, 'manageMatches.html')
+    games = Game.objects.all()
+    teams = Team.objects.all()
+    return render(request, 'manageMatches.html', {'games' : games, 'teams' : teams})
+
+
+def addMatch(request):
+    if not request.user.is_authenticated:
+        return redirect('/manage/')
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        length = request.POST.get('length')
+        team_a_id = request.POST.get('team_a')
+        team_b_id = request.POST.get('team_b')
+        winner_id = request.POST.get('winner')
+        if(winner_id == 1):
+            winner_id = team_a_id
+        else:
+            winner_id = team_b_id
+        serie = get_object_or_404(Serie, id=2)
+        match = Game.objects.create(date=date,
+                                    length=length,
+                                    teamA=get_object_or_404(Team, id=team_a_id),
+                                    teamB=get_object_or_404(Team, id=team_b_id),
+                                    winner=get_object_or_404(Team, id=winner_id),
+                                    serie=serie)
+        match.save()
+    return redirect('/manage/matches')

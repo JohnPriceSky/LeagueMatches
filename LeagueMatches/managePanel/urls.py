@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^RenameTeam/(?P<team_id>[0-9]+)$', views.renameTeam, name='renameTeam'),
     url(r'^RemoveTeam/(?P<team_id>[0-9]+)$', views.removeTeam, name='removeTeam'),
     url(r'^matches$', views.matches, name='matches'),
+    url(r'^AddMatch$', views.addMatch, name='addMatch'),
 ]
