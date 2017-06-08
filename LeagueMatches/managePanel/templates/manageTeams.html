@@ -1,0 +1,25 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h1>Edit Teams</h1>
+    <hr>
+    <p>Click for team to edit</p>
+    <hr>
+    <ul class="list-group">
+    {% for t in teams %}
+        {% if t.name != 'Free Agent' %}
+        <li class="list-group-item"><a href="{% url 'manage:editTeam' t.id %}">{{ t }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <hr>
+    <h2>Add new team:</h2>
+    <hr>
+    <form method="post" action="{% url 'manage:addTeam' %}">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" placeholder="Team name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+{% endblock %}

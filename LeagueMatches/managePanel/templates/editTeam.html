@@ -1,0 +1,50 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h2>Edit {{ team }}:</h2>
+    <hr>
+    <div class="well">
+            <form method="post" action="{% url 'manage:renameTeam' team.id %}">{% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" placeholder="Username" name="name" value="{{ team }}" required>
+                </div>
+                <button type="submit" class="btn btn-success">Accept</button>
+            </form>
+        </div>
+    <hr>
+    <p>Players:</p>
+    <table class="table">
+    {% if players %}
+    {% for p in players %}
+        <tr>
+            <td>{{ p }}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'manage:disband' team.id p.id %}">Disband</a>
+            </td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+        <tr>
+            <td>
+                <form class="form-inline" method="post" action="{% url 'manage:addPlayerToTeam' team.id %}">{% csrf_token %}
+
+                    <select title="Player" name="player" required>
+                        <option disabled selected hidden>Choose a player</option>
+                    {% for f in freePlayers %}
+                        <option value="{{ f.id }}">{{ f }}</option>
+                    {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="btn btn-danger" href="{% url 'manage:removeTeam' team.id %}">Remove Team</a>
+            </td>
+        </tr>
+    </table>
+    <hr>
+
+{% endblock %}

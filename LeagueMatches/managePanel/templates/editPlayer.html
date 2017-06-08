@@ -1,0 +1,21 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h2>Edit {{ player }}</h2>
+    <hr>
+    <form method="post" action="{% url 'manage:updatePlayer' player.id %}">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" placeholder="Name" name="name" value="{{ player.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" placeholder="Surname" name="surname" value="{{ player.surname }}" required>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input type="text" class="form-control" placeholder="Nickname" name="nickname" value="{{ player.nickname }}" required>
+        </div>
+        <button type="submit" class="btn btn-success">Accept</button>
+    </form>
+{% endblock %}

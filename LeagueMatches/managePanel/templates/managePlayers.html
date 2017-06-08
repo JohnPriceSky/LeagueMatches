@@ -1,0 +1,31 @@
+{% extends "manageBase.html" %}
+
+{% block content %}
+    <h1>Edit Players</h1>
+    <hr>
+    <p>Click for player to edit</p>
+    <hr>
+    <ul>
+    {% for p in players %}
+        <li class="list-group-item"><a href="{% url 'manage:editPlayer' p.id %}">{{ p }}</a></li>
+    {% endfor %}
+    </ul>
+    <hr>
+    <h2>Add new player:</h2>
+    <hr>
+    <form method="post" action="{% url 'manage:addPlayer' %}">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" placeholder="Name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" placeholder="Surname" name="surname" required>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input type="text" class="form-control" placeholder="Nickname" name="nickname" required>
+        </div>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+{% endblock %}
