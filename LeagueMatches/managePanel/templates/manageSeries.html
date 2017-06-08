@@ -7,7 +7,22 @@
     <hr>
     <ul class="list-group">
         {% for s in series %}
-            <li class="list-group-item"><a href="{% url 'manage:editSerie' s.id %}">{{ s }}</a></li>
+            {% if s.id != 2 %}
+                <li class="list-group-item">
+                    <p>{{ s }}</p>
+                    <form class="form-inline" method="post" action="{% url 'manage:editSerie' s.id %}">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="begin">Begin:</label>
+                            <input type="date" class="form-control" placeholder="Begin date" name="begin" value="{{ s.begin }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end">End:</label>
+                            <input type="date" class="form-control" placeholder="End date" name="end" value="{{ s.end }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
     <hr>

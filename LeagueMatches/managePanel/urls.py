@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^series$', views.series, name='series'),
     url(r'^AddSerie$', views.addSerie, name='addSerie'),
     url(r'^serie/(?P<serie_id>[0-9]+)$', views.editSerie, name='editSerie'),
+    url(r'^UpdateMatch/(?P<game_id>[0-9]+)$', views.updateMatch, name='updateMatch')
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, render, redirect
 from django.http import Http404, HttpResponseRedirect
-from .models import Serie, Game, Team, Player
+from .models import Serie, Game, Team, Player, Stat
 
 
 def home(request):
@@ -13,7 +13,7 @@ def show_schedule(request):
 
 
 def show_games(request, serie_id):
-    games = get_list_or_404(Game, serie_id=serie_id)
+    games = Game.objects.filter(serie_id=serie_id)
     return render_to_response('games.html', {'games': games})
 
 
@@ -37,7 +37,7 @@ def contact(request):
 
 def stat(request):
     players = Player.objects.all()
-    return render_to_response('stat.html', {'players': players})
+    return render_to_response('stat.html', {'players' : players})
 
 
 def stat2(request, player_id):

@@ -28,7 +28,6 @@
         <tr>
             <td>
                 <form class="form-inline" method="post" action="{% url 'manage:addPlayerToTeam' team.id %}">{% csrf_token %}
-
                     <select title="Player" name="player" required>
                         <option disabled selected hidden>Choose a player</option>
                     {% for f in freePlayers %}

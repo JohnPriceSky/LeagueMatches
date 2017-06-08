@@ -1,25 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Statystyki</h2>
+    <h2>Statistics</h2>
     <hr>
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Gracz</th>
-                <th>KDA</th>
-                <th>costam</th>
-                <th>Wybierz</th>
+                <th>Id</th>
+                <th>Player</th>
+                <th>Kills</th>
             </tr>
         </thead>
         <tbody>
             {% for p in players %}
                 <tr>
                     <td>{{ p.id }}</td>
-                    <td>{{ p }}</td>
-                    <td>Kda</td>
-                    <td>costam</td>
+                    <td>{{ p.nickname }}</td>
                     <td><a href="{% url 'game:stat2' p.id %}">Choose</a></td>
                 </tr>
             {% endfor %}

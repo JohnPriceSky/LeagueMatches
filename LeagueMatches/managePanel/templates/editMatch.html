@@ -3,32 +3,89 @@
 {% block content %}
     <h2>Edit {{ game }}</h2>
     <hr>
-
+    <ul class="table">
+        <li class="list-group-item">
+            <form class="form" method="post" action="{% url 'manage:updateMatch' game.id %}">{% csrf_token %}
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" class="form-control" placeholder="0" name="date" value="{{ game.date }}"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="length">Length:</label>
+                    <input type="number" class="form-control" placeholder="20" name="length" value="{{ game.length }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="team_a">Team A: </label>
+                    <select title="Team A" name="team_a" required>
+                        <option disabled selected hidden>Choose a team</option>
+                        {% for t in teams %}
+                            {% if t.name != 'Free Agent' %}
+                                <option value="{{ t.id }}">{{ t }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="team_b">Team B: </label>
+                    <select title="Team B" name="team_b" required>
+                        <option disabled selected hidden>Choose a team</option>
+                        {% for t in teams %}
+                            {% if t.name != 'Free Agent' %}
+                                <option value="{{ t.id }}">{{ t }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="winner">Winner: </label>
+                    <select title="Team B" name="winner" required>
+                        <option disabled selected hidden>Choose a team</option>
+                        <option value="1">Team A</option>
+                        <option value="2">Team B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="series">Series: </label>
+                    <select title="Series" name="series" required>
+                        <option disabled selected hidden>Choose a serie</option>
+                        {% for s in series %}
+                            <option value="{{ s.id }}">{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+        </li>
+    </ul>
     <hr>
     <h3>Edit stats:</h3>
     <hr>
     <ul class="table">
-    {% for s in stats %}
-        <li class="list-group-item">
-            <p>{{ s.player }}</p>
-            <form class="form-inline" method="post" action="{% url 'manage:updateStat' s.id %}">{% csrf_token %}
-                <div class="form-group">
-                    <label for="kills">Kills:</label>
-                    <input type="number" class="form-control" placeholder="0" name="kills" value="{{ s.kills }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="deaths">Deaths:</label>
-                    <input type="number" class="form-control" placeholder="0" name="deaths" value="{{ s.deaths }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="assists">Assists:</label>
-                    <input type="number" class="form-control" placeholder="0" name="assists" value="{{ s.assists }}" required>
-                </div>
-                <button type="submit" class="btn btn-success">Update</button>
-            </form>
-            <br>
-            <a class="btn btn-info" href="{% url 'manage:editObjectives' s.id %}">Edit objectives</a>
-        </li>
-    {% endfor %}
+        {% for s in stats %}
+            <li class="list-group-item">
+                <p>{{ s.player }}</p>
+                <form class="form-inline" method="post" action="{% url 'manage:updateStat' s.id %}">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="kills">Kills:</label>
+                        <input type="number" class="form-control" placeholder="0" name="kills" value="{{ s.kills }}"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deaths">Deaths:</label>
+                        <input type="number" class="form-control" placeholder="0" name="deaths" value="{{ s.deaths }}"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assists">Assists:</label>
+                        <input type="number" class="form-control" placeholder="0" name="assists" value="{{ s.assists }}"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
+                <br>
+                <a class="btn btn-info" href="{% url 'manage:editObjectives' s.id %}">Edit objectives</a>
+            </li>
+        {% endfor %}
     </ul>
 {% endblock %}

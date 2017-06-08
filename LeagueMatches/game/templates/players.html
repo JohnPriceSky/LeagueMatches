@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Gracze</h2>
+    <h2>Players</h2>
     <hr>
     <table class="table table-responsive">
         <thead>
@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ p.id }}</td>
                     <td>{{ p }}</td>
-                    <td><a href="#">Choose</a></td>
+                    <td><a href="{% url 'game:stat2' p.id %}">Choose</a></td>
                 </tr>
             {% endfor %}
         </tbody>

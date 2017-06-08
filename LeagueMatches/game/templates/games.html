@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Mecze</h2>
+    <h2>Games</h2>
     <hr>
     <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Mecz</th>
-                <th>Wybierz</th>
             </tr>
         </thead>
         <tbody>
+            {% if games %}
             {% for g in games %}
                 <tr>
                     <td>{{ g.id }}</td>
                     <td>{{ g }}</td>
-                    <td><a href="#">Choose</a></td>
                 </tr>
             {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 {% endblock %}
